@@ -226,7 +226,8 @@ from oauth2client.service_account import ServiceAccountCredentials
 # Google Sheets setup
 scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
 
-creds = ServiceAccountCredentials.from_json_keyfile_name(r"C:\Users\HP USER\Downloads\door-knocking-app-0eed563aaa36.json", scope)
+# Works on local computer but for streamlit cloud we will use the link in the bottom
+# creds = ServiceAccountCredentials.from_json_keyfile_name(r"C:\Users\HP USER\Downloads\door-knocking-app-0eed563aaa36.json", scope)
 
 client = gspread.authorize(creds)
 sheet = client.open("Door Knocking Stats").sheet1
@@ -307,4 +308,27 @@ if st.button("End Session"):
     st.success("Session data saved to Google Sheets.")
     st.warning("Session has ended. Close the app manually if needed.")
     st.stop()  # Stops further execution
+
+
+
+import json
+from oauth2client.service_account import ServiceAccountCredentials
+
+# Access the secret stored in Streamlit Cloud
+creds_dict = {
+    "type": st.secrets["gcp"]["type"],
+    "project_id": st.secrets["gcp"]["project_id"],
+    "private_key_id": st.secrets["gcp"]["private_key_id"],
+    "private_key": st.secrets["gcp"]["private_key"],
+    "client_email": st.secrets["gcp"]["client_email"],
+    "client_id": st.secrets["gcp"]["client_id"],
+    "auth_uri": st.secrets["gcp"]["auth_uri"],
+    "token_uri": st.secrets["gcp"]["token_uri"],
+    "auth_provider_x509_cert_url": st.secrets["gcp"]["auth_provider_x509_cert_url"],
+    "client_x509_cert_url": st.secrets["gcp"]["client_x509_cert_url"],
+    "universe_domain": st.secrets["gcp"]["universe_domain"]
+}
+
+# Load the credentials from the dict and use them
+creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scope)
 
