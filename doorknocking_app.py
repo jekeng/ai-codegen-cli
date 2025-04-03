@@ -294,20 +294,73 @@ st.title("Door Knocking Tracker")
 #     st.write(f"{key}: {value}")
     
 
+
+# Issue with this code is that it only saves when i hit end. isnt ideal cause it times out sometimes
+# outcome = st.selectbox("Select Outcome:", ["Knock", "Not Interested", "Lead"])
+# if st.button("Record Outcome"):
+#     if outcome == "Knock":
+#         st.session_state.stats["Knock"] += 1
+#     elif outcome == "Not Interested":
+#         st.session_state.stats["Knock"] += 1
+#         st.session_state.stats["Contact"] += 1
+#         st.session_state.stats["Not Interested"] += 1
+#     elif outcome == "Lead":
+#         st.session_state.stats["Knock"] += 1
+#         st.session_state.stats["Contact"] += 1
+#         st.session_state.stats["Lead"] += 1
+
+#     st.success(f"Recorded: {outcome}")
+
+# # Display live stats
+# st.subheader("Current Stats")
+# for key, value in st.session_state.stats.items():
+#     st.write(f"{key}: {value}")
+
+# # End session button
+# if st.button("End Session"):
+#     st.subheader("Final Stats of the Session:")
+    
+#     # Display final stats
+#     for key, value in st.session_state.stats.items():
+#         st.write(f"{key}: {value}")
+
+#     # Append final stats to Google Sheet
+#     today_date = datetime.today().strftime('%Y-%m-%d')
+#     new_entry = [today_date, st.session_state.stats["Knock"], st.session_state.stats["Contact"], 
+#                  st.session_state.stats["Not Interested"], st.session_state.stats["Lead"]]
+#     sheet.append_row(new_entry)
+
+#     st.success("Session data saved to Google Sheets.")
+#     st.warning("Session has ended. Close the app manually if needed.")
+#     st.stop()  # Stops further execution
+
+
+
 outcome = st.selectbox("Select Outcome:", ["Knock", "Not Interested", "Lead"])
+
+
+# Record Outcome
 if st.button("Record Outcome"):
-    if outcome == "Knock":
-        st.session_state.stats["Knock"] += 1
-    elif outcome == "Not Interested":
-        st.session_state.stats["Knock"] += 1
+    st.session_state.stats["Knock"] += 1
+
+    if outcome == "Not Interested":
         st.session_state.stats["Contact"] += 1
         st.session_state.stats["Not Interested"] += 1
     elif outcome == "Lead":
-        st.session_state.stats["Knock"] += 1
         st.session_state.stats["Contact"] += 1
         st.session_state.stats["Lead"] += 1
 
     st.success(f"Recorded: {outcome}")
+
+    # Update Google Sheets Immediately
+    try:
+        today_date = datetime.today().strftime('%Y-%m-%d')
+        new_entry = [today_date, st.session_state.stats["Knock"], st.session_state.stats["Contact"],
+                     st.session_state.stats["Not Interested"], st.session_state.stats["Lead"]]
+        sheet.append_row(new_entry)
+        st.info("Stats updated in Google Sheets.")
+    except Exception as e:
+        st.error(f"Failed to update Google Sheets: {e}")
 
 # Display live stats
 st.subheader("Current Stats")
@@ -317,22 +370,22 @@ for key, value in st.session_state.stats.items():
 # End session button
 if st.button("End Session"):
     st.subheader("Final Stats of the Session:")
-    
+
     # Display final stats
     for key, value in st.session_state.stats.items():
         st.write(f"{key}: {value}")
 
-    # Append final stats to Google Sheet
-    today_date = datetime.today().strftime('%Y-%m-%d')
-    new_entry = [today_date, st.session_state.stats["Knock"], st.session_state.stats["Contact"], 
-                 st.session_state.stats["Not Interested"], st.session_state.stats["Lead"]]
-    sheet.append_row(new_entry)
+    # Final Save to Google Sheets
+    try:
+        today_date = datetime.today().strftime('%Y-%m-%d')
+        new_entry = [today_date, st.session_state.stats["Knock"], st.session_state.stats["Contact"],
+                     st.session_state.stats["Not Interested"], st.session_state.stats["Lead"]]
+        sheet.append_row(new_entry)
+        st.success("Final session data saved to Google Sheets.")
+    except Exception as e:
+        st.error(f"Final save failed: {e}")
 
-    st.success("Session data saved to Google Sheets.")
     st.warning("Session has ended. Close the app manually if needed.")
-    st.stop()  # Stops further execution
-
-
-
+    st.stop()
 
 
