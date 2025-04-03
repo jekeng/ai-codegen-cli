@@ -388,6 +388,11 @@ st.title("Door Knocking Tracker")
 #     st.warning("Session has ended. Close the app manually if needed.")
 #     st.stop()
 
+# Initialize session state
+if "stats" not in st.session_state:
+    st.session_state.stats = {"Knock": 0, "Contact": 0, "Not Interested": 0, "Lead": 0}
+    st.session_state.row_index = 0  # Start with row index 0 (first row)
+
 
 # Select Outcome
 outcome = st.selectbox("Select Outcome:", ["Knock", "Not Interested", "Lead"])
