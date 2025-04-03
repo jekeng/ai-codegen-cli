@@ -336,8 +336,61 @@ st.title("Door Knocking Tracker")
 
 
 
-outcome = st.selectbox("Select Outcome:", ["Knock", "Not Interested", "Lead"])
+# outcome = st.selectbox("Select Outcome:", ["Knock", "Not Interested", "Lead"])
 
+
+# # Record Outcome
+# if st.button("Record Outcome"):
+#     st.session_state.stats["Knock"] += 1
+
+#     if outcome == "Not Interested":
+#         st.session_state.stats["Contact"] += 1
+#         st.session_state.stats["Not Interested"] += 1
+#     elif outcome == "Lead":
+#         st.session_state.stats["Contact"] += 1
+#         st.session_state.stats["Lead"] += 1
+
+#     st.success(f"Recorded: {outcome}")
+
+#     # Update Google Sheets Immediately
+#     try:
+#         today_date = datetime.today().strftime('%Y-%m-%d')
+#         new_entry = [today_date, st.session_state.stats["Knock"], st.session_state.stats["Contact"],
+#                      st.session_state.stats["Not Interested"], st.session_state.stats["Lead"]]
+#         sheet.append_row(new_entry)
+#         st.info("Stats updated in Google Sheets.")
+#     except Exception as e:
+#         st.error(f"Failed to update Google Sheets: {e}")
+
+# # Display live stats
+# st.subheader("Current Stats")
+# for key, value in st.session_state.stats.items():
+#     st.write(f"{key}: {value}")
+
+# # End session button
+# if st.button("End Session"):
+#     st.subheader("Final Stats of the Session:")
+
+#     # Display final stats
+#     for key, value in st.session_state.stats.items():
+#         st.write(f"{key}: {value}")
+
+#     # Final Save to Google Sheets
+#     try:
+#         today_date = datetime.today().strftime('%Y-%m-%d')
+#         new_entry = [today_date, st.session_state.stats["Knock"], st.session_state.stats["Contact"],
+#                      st.session_state.stats["Not Interested"], st.session_state.stats["Lead"]]
+#         sheet.append_row(new_entry)
+#         st.success("Final session data saved to Google Sheets.")
+#     except Exception as e:
+#         st.error(f"Final save failed: {e}")
+
+#     st.warning("Session has ended. Close the app manually if needed.")
+#     st.stop()
+
+
+# Select Outcome
+outcome = st.selectbox("Select Outcome:", ["Knock", "Not Interested", "Lead"])
 
 # Record Outcome
 if st.button("Record Outcome"):
@@ -352,13 +405,21 @@ if st.button("Record Outcome"):
 
     st.success(f"Recorded: {outcome}")
 
-    # Update Google Sheets Immediately
+    # Get today's date
+    today_date = datetime.today().strftime('%Y-%m-%d')
+    new_entry = [today_date, st.session_state.stats["Knock"], st.session_state.stats["Contact"],
+                 st.session_state.stats["Not Interested"], st.session_state.stats["Lead"]]
+
     try:
-        today_date = datetime.today().strftime('%Y-%m-%d')
-        new_entry = [today_date, st.session_state.stats["Knock"], st.session_state.stats["Contact"],
-                     st.session_state.stats["Not Interested"], st.session_state.stats["Lead"]]
-        sheet.append_row(new_entry)
-        st.info("Stats updated in Google Sheets.")
+        # If first time, append a row and save its index
+        if st.session_state.row_index is None:
+            sheet.append_row(new_entry)
+            st.session_state.row_index = len(sheet.get_all_values())  # Get the row index
+        else:
+            # Update the existing row instead of appending a new one
+            sheet.update(f"A{st.session_state.row_index}:E{st.session_state.row_index}", [new_entry])
+        
+        st.info("Stats updated in Google Sheets (without appending new rows).")
     except Exception as e:
         st.error(f"Failed to update Google Sheets: {e}")
 
@@ -375,17 +436,15 @@ if st.button("End Session"):
     for key, value in st.session_state.stats.items():
         st.write(f"{key}: {value}")
 
-    # Final Save to Google Sheets
+    # Append final stats as a permanent record
     try:
         today_date = datetime.today().strftime('%Y-%m-%d')
-        new_entry = [today_date, st.session_state.stats["Knock"], st.session_state.stats["Contact"],
-                     st.session_state.stats["Not Interested"], st.session_state.stats["Lead"]]
-        sheet.append_row(new_entry)
+        final_entry = [today_date, st.session_state.stats["Knock"], st.session_state.stats["Contact"],
+                       st.session_state.stats["Not Interested"], st.session_state.stats["Lead"]]
+        sheet.append_row(final_entry)
         st.success("Final session data saved to Google Sheets.")
     except Exception as e:
         st.error(f"Final save failed: {e}")
 
     st.warning("Session has ended. Close the app manually if needed.")
     st.stop()
-
-
