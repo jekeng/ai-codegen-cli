@@ -87,15 +87,31 @@ if st.button("Record Outcome"):
     st.success(f"Recorded: {outcome}")
 
     # Update Google Sheets Immediately
-    try:
-        today_date = datetime.today().strftime('%Y-%m-%d')
-        new_entry = [today_date, st.session_state.stats["Knock"], st.session_state.stats["Contact"],
-                      st.session_state.stats["Not Interested"], st.session_state.stats["Lead"]]
-        sheet.update('A2:E2', [new_entry])
-        st.info("Stats updated in Google Sheets.")
-    except Exception as e:
-        st.error(f"Failed to update Google Sheets: {e}")
+try:
+    today_date = datetime.today().strftime('%Y-%m-%d')
+    new_entry = [today_date, st.session_state.stats["Knock"], st.session_state.stats["Contact"],
+                 st.session_state.stats["Not Interested"], st.session_state.stats["Lead"]]
 
+    all_rows = sheet.get_all_values()
+    
+    # Search for today's date in column A
+    row_index = None
+    for idx, row in enumerate(all_rows):
+        if row and row[0] == today_date:
+            row_index = idx + 1  # +1 because gspread uses 1-based indexing
+            break
+
+    if row_index:  # Update existing row
+        cell_range = f"A{row_index}:E{row_index}"
+        sheet.update(cell_range, [new_entry])
+        st.info("Today's stats updated in Google Sheets.")
+    else:  # Append as new row
+        sheet.append_row(new_entry)
+        st.info("New day added to Google Sheets.")
+
+except Exception as e:
+    st.error(f"Failed to update Google Sheets: {e}")
+    
 # Display live stats
 st.subheader("Current Stats")
 for key, value in st.session_state.stats.items():
