@@ -380,7 +380,7 @@ if st.button("End Session"):
         today_date = datetime.today().strftime('%Y-%m-%d')
         new_entry = [today_date, st.session_state.stats["Knock"], st.session_state.stats["Contact"],
                       st.session_state.stats["Not Interested"], st.session_state.stats["Lead"]]
-        sheet.append_row(new_entry)
+        sheet.update('A2:E2', [new_entry])
         st.success("Final session data saved to Google Sheets.")
     except Exception as e:
         st.error(f"Final save failed: {e}")
