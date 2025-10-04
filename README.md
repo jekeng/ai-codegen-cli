@@ -106,6 +106,16 @@ The tool supports most popular programming languages including:
 - Ruby
 - And many more!
 
+## Project Structure
+
+```
+A/
+├── venv/           # Virtual environment (created after setup)
+├── main.py         # Main application file
+├── requirements.txt # Python dependencies
+└── README.md       # This file
+```
+
 ## Dependencies
 
 - `langchain-groq`: LangChain integration with Groq
